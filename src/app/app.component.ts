@@ -48,6 +48,7 @@ export class AppComponent {
     console.log(event.target.files)
     this.getImageFromInput(event).subscribe(
       image => {
+        console.log(image)
         if (image){
           this.webdavservice.uploadImage(image);
         }
@@ -57,7 +58,7 @@ export class AppComponent {
   }
 
   getImageFromInput(event: any): Observable<string | null>{
-    if (event.target.files.length > 0 && event.target.files[0].type.includes('image') && event.target.files[0].size < 2000000) {
+    if (event.target.files.length > 0 && event.target.files[0].type.includes('image')) {
       return new Observable(obs => {
         let reader = new FileReader();
         reader.readAsArrayBuffer(event.target.files[0]);
