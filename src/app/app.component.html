@@ -1,3 +1,10 @@
-<h1>BECHATRONIKER</h1>
-<p>Styling kumd nu</p>
-<input type="file" (change)="inputChange($event)">
+<div class="main">
+  <div class="content-container">
+    <h1>Wir sind die BECHATRONIKER</h1>
+    <p>Einst zahlreich in den Vorlesungen, haben wir durch endlose Klausuren viele von uns verloren. Nun Leben wir zurückgezogen ist unserem natürlichen Lebensraum, der Bar. Wenn du einer von den wenigen bist, die einen der unseren zu Gesicht bekommen, zögere nicht und mach ein Foto mit uns!</p>
+
+    <input type="file" class="ng-hide" style="display: none;" id="input-file-id" (change)="inputChange($event)">
+    <label id="file-label" for="input-file-id">Foto aufnehmen</label>
+  </div>
+</div>
+

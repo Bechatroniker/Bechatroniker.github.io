@@ -16,14 +16,13 @@ export class WebdavhandlerService {
     authType: AuthType.Password,
     username: "ncp",
     password: "NWxdD7iN87LKySh7SJ7616niAShw+Ks6mUzwP30Tuvk",
-
-});
+    });
   client.createDirectory("test1");
   console.log("TEST")
   }
 
 
-  async uploadImage(imagePath: string){
+  async uploadImage(imagePath: string, imageEnding: string){
     const client = createClient("https://bechatroniker.ddns.net/remote.php/dav/files/ncp", {
     authType: AuthType.Password,
     username: "ncp",
@@ -33,11 +32,10 @@ export class WebdavhandlerService {
     let now = Date.now()
     let imageName = now.toString()
     console.log(imageName)
-    // let imageName = now.getDay() + "." + now.getMonth() + "." + now.getFullYear() + "_" + now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds() + ":" + now.getMilliseconds()
-    imageName = imageName + ".jpg"
+    // imageName = imageName + ".jpg"
+    imageName = imageName + "." + imageEnding
 
-    await client.putFileContents("Photos/" + imageName, imagePath);
+    return (await client.putFileContents("Photos/" + imageName, imagePath));
 
-   //client.createWriteStream("test")
   }
 }

@@ -50,7 +50,16 @@ export class AppComponent {
       image => {
         console.log(image)
         if (image){
-          this.webdavservice.uploadImage(image);
+          this.webdavservice.uploadImage(image, event.target.files[0].name.split(".")[event.target.files[0].name.split(".").length - 1]).then(
+            status => {
+              if (status) {
+                alert("Danke für das Foto!")
+              } else {
+                alert("Ups da ist ettwas schief gelaufen, versuche es später erneut.")
+              }
+            }
+          );
+
         }
 
       }
