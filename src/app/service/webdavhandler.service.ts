@@ -23,10 +23,10 @@ export class WebdavhandlerService {
 
 
   async uploadImage(imagePath: string, imageEnding: string){
-    const client = createClient("https://bechatroniker.ddns.net/remote.php/dav/files/ncp", {
+    const client = createClient("https://bechatroniker.ddns.net/remote.php/dav/files/web", {
     authType: AuthType.Password,
-    username: "ncp",
-    password: "NWxdD7iN87LKySh7SJ7616niAShw+Ks6mUzwP30Tuvk",
+    username: "web",
+    password: "86CJw1!8VNhhUZ!k&@6d",
     });
 
     let now = Date.now()
