@@ -31,7 +31,6 @@ export class WebdavhandlerService {
 
     let now = Date.now()
     let imageName = now.toString()
-    console.log(imageName)
     // imageName = imageName + ".jpg"
     imageName = imageName + "." + imageEnding
 
