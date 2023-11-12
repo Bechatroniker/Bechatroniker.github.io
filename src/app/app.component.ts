@@ -11,37 +11,40 @@ import { Observable, of } from 'rxjs';
 })
 export class AppComponent {
   title = 'Bechatroniker';
+  translations = {
+    'main1' : {
+      'en': 'We need your help!',
+      'de': 'Deine Hilfe ist gefragt!'
+    },
+    'main2': {
+      'en': 'Help us recreate the evening by clicking on the camera icon and taking a photo with us.',
+      'de': 'Hilf uns den Abend zu rekonstruieren, indem du auf das Kamera-Icon clickst und ein Foto mit uns machst.'
+    },
+    'footer': {
+      'en': 'more information ...',
+      'de': 'mehr Informationen ...'
+    }
+  }
 
-  // constructor(private webdav: WebDAV) {
-  //   const header =  new Headers();
-  //       const url = 'https://your.url'
-  //       header.append('Authorization', 'Basic '  + btoa('username:password'));
-  //       //header.append('Destination', '${url}/newfile_directory');
-  //       //header.append('Depth', '300');
-  //       header.append('Content-Type', 'text/xml');
-
-  //       const body=`
-  //       <?xml version="1.0"?>
-  //       <d:propertyupdate xmlns:d="DAV:" xmlns:oc="http://owncloud.org/ns">
-  //         <d:set>
-  //           <d:prop>
-  //                       <d:lastmodified>Fri, 13 Feb 2015 00:00:00 GMT</d:lastmodified>
-  //           </d:prop>
-  //         </d:set>
-  //       </d:propertyupdate>
-  //       `
-  //       // webdav.get(`${url}/Photos/Paris.jpg`, {headers: header})
-  //       // webdav.mkcol(`${url}/newdir`, {headers: header})
-  //       // webdav.move(`${url}/newdir`, {headers: header})
-  //       // webdav.copy(`${url}/newdir`, {headers: header})
-  //       // webdav.delete(`${url}/newdir2`, {headers: header})
-  //       // webdav.propfind(`${url}/`, {headers: header})
-  //       // webdav.put(`${url}/test`, body, {headers: header})
-  //       webdav.proppatch(`${url}/test`, body, {headers: header})
-  //                       .subscribe();
-  // }
   constructor(private webdavservice: WebdavhandlerService) {
-   // webdavservice.uploadImage("test");
+
+  }
+
+  getTranslation(trans: any): any{
+    let lang = this.getUsersLocale('en');
+    if (lang == "de-DE")  return trans.de
+    return trans.en
+  }
+
+  getUsersLocale(defaultValue: string): string {
+    if (typeof window === 'undefined' || typeof window.navigator === 'undefined') {
+      return defaultValue;
+    }
+    const wn = window.navigator as any;
+    let lang = wn.languages ? wn.languages[0] : defaultValue;
+    lang = lang || wn.language || wn.browserLanguage || wn.userLanguage;
+    console.log(lang)
+    return lang;
   }
 
   inputChange(event:any){
