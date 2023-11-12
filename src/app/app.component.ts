@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { WebdavComponent } from './service/webdav/webdav.component';
 import { WebdavhandlerService } from './service/webdavhandler.service';
 import { Observable, of } from 'rxjs';
 
@@ -43,7 +42,6 @@ export class AppComponent {
     const wn = window.navigator as any;
     let lang = wn.languages ? wn.languages[0] : defaultValue;
     lang = lang || wn.language || wn.browserLanguage || wn.userLanguage;
-    console.log(lang)
     return lang;
   }
 
@@ -56,9 +54,17 @@ export class AppComponent {
           this.webdavservice.uploadImage(image, event.target.files[0].name.split(".")[event.target.files[0].name.split(".").length - 1]).then(
             status => {
               if (status) {
-                alert("Danke für das Foto!")
+                if(this.getUsersLocale("en") == "de-DE"){
+                  alert("Danke für das Foto!")
+                } else {
+                  alert("Thanks for your help!")
+                }
               } else {
-                alert("Ups da ist ettwas schief gelaufen, versuche es später erneut.")
+                if(this.getUsersLocale("en") == "de-DE"){
+                  alert("Ups da ist ettwas schief gelaufen, versuche es später erneut.")
+                } else {
+                  alert("Something went wrong, please try again later.")
+                }
               }
             }
           );
